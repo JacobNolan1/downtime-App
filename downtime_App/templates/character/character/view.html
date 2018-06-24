@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}View Character (Charactername){% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>;;Character Name: Downtime Unset</h2>
+<p>Character Description</p>
+<p>;;str:10 dex:14 con:13 int:12 wis:11 cha:11</p>
+<h2>Character Activities</h2>
+<a href="{{ url_for('character.index') }}">Back</a>
+<hr>
+<hr>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Select Campaign{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('campaign.new') }}">New Campaign</a>
+<hr>
+<a href="{{ url_for('campaign.update') }}">Edit Campaign</a>
+<a href="{{ url_for('character.select_activities') }}">Select Downtime Activities</a>
+{% endblock %}

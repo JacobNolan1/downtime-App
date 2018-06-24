@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Character (Charactername){% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form action="{{ url_for('character.index') }}" method="post">
+		<input type="text" name="Character Name">
+		<input type="text" name="Character Description">
+		<hr>
+		<input type="text" name="str">
+		<input type="text" name="dex">
+		<input type="text" name="con">
+		<input type="text" name="int">
+		<input type="text" name="wis">
+		<input type="text" name="cha">
+		<input type="submit" value="Submit">
+		<input type="reset" value="Reset">
+	</form>
+	<a href="{{ url_for('character.index') }}">Back</a>
+{% endblock %}

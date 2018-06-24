@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Campaign Downtime(CampaignName){% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form action="{{ url_for('campaign.index') }}" method="post">
+		<input type="submit" value="Submit">
+		<input type="reset" value="Reset">
+	</form>
+	<a href="{{ url_for('campaign.index') }}">Back</a>
+{% endblock %}
