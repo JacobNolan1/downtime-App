@@ -20,7 +20,16 @@ def create_app(test_config=None):
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
     
+    from . import character
+    app.register_blueprint(character.bp)
+    
+    from . import campaign
+    app.register_blueprint(campaign.bp)
+
     return app
+
+    
+    
 """
 if test_config is None:
     # load the instance config, if it exists, when not testing
