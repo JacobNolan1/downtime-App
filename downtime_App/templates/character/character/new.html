@@ -6,15 +6,34 @@
 
 {% block content %}
 	<form action="{{ url_for('character.index') }}" method="post">
-		<input type="text" name="Character Name">
-		<input type="text" name="Character Description">
+		<input type="hidden" name="post_action" value="new">
+		<input type="hidden" name="character_ID" value="">
+		
+		<label for="character_name">Character Name</label>
+		<input type="text" name="character_name">
+		
+		<label for="character_description">Character Description</label>
+		<input type="text" name="character_description">
 		<hr>
-		<input type="text" name="str">
-		<input type="text" name="dex">
-		<input type="text" name="con">
-		<input type="text" name="int">
-		<input type="text" name="wis">
-		<input type="text" name="cha">
+		<label for="char_str">Character Strength</label>
+		<input type="text" name="char_str">
+
+		<label for="char_dex">Character Dexterity</label>
+		<input type="text" name="char_dex">
+		
+		<label for="char_con">Character Constituition</label>
+		<input type="text" name="char_con">
+
+		<label for="char_int">Character Intelligence</label>
+		<input type="text" name="char_int">
+
+		<label for="char_wis">Character Wisdom</label>
+		<input type="text" name="char_wis">
+
+		<label for="char_cha">Character Charisma</label>
+		<input type="text" name="char_cha">
+
+
 		<input type="submit" value="Submit">
 		<input type="reset" value="Reset">
 	</form>

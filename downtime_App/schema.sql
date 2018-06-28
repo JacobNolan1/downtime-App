@@ -20,6 +20,7 @@ CREATE TABLE character(
   character_id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL,
   character_name VARCHAR(100) NOT NULL,
+  character_description TEXT NOT NULL,
   character_str INTEGER NOT NULL,
   character_dex INTEGER NOT NULL,
   character_con INTEGER NOT NULL,

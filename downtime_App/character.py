@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+	Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -11,21 +11,66 @@ bp = Blueprint('character', __name__, url_prefix='/character')
 
 @bp.route('/', methods=('GET', 'POST'))
 def index():
-    return render_template('character/character/index.html')
+
+	db = get_db()
+
+	if request.method == 'GET':
+		characters = db.execute(
+		'SELECT * FROM character'
+		).fetchall()
+		return render_template('character/character/index.html', characters=characters)
+
+	if request.method == 'POST':
+		postAction = request.form.get('post_action')
+		characterID = request.form.get('character_ID')
+		characterName = request.form.get('character_name')
+		characterDescription = request.form.get('character_description')
+		charStr = request.form.get('char_str')
+		charDex = request.form.get('char_dex')
+		charCon = request.form.get('char_con')
+		charInt = request.form.get('char_int')
+		charWis = request.form.get('char_wis')
+		charCha = request.form.get('char_cha')
+		
+		if postAction == "new":
+			if postAction != "" and characterName != "" and characterDescription != "" and charStr != "" and \
+				charDex != "" and charCon != "" and charInt != "" and charWis != "" and charCha != "":
+				print("test")
+				userID=""
+				avaliableDowntime = 0
+				usedDowntime = 0
+				db.execute('INSERT INTO character (user_id, character_name, character_description, character_str, \
+					character_dex, character_con, character_int, character_wis, character_cha, \
+					avaliable_downtime, used_downtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' \
+					,(userID, characterName, characterDescription, charStr, charDex, charCon, \
+					charInt, charWis, charCha, avaliableDowntime, usedDowntime))
+				db.commit()
+			else:
+				error = "Not all feilds were entered correctly"
+				flash(error)
+				return redirect(url_for('character.new'))
+		return render_template('character/character/index.html')
 
 @bp.route('/new', methods=['GET'])
 def new():
-    return render_template('character/character/new.html')
+	return render_template('character/character/new.html')
 
 @bp.route('/update', methods=['GET'])
 def update():
-    return render_template('character/character/update.html')
+	return render_template('character/character/update.html')
 
 
-@bp.route('/view', methods=['GET'])
-def view():
-    return render_template('character/character/view.html')
+@bp.route('/view/<characterID>', methods=['GET'])
+def view(characterID):
+	db = get_db()
+	if request.method == 'GET':
+		#sqlite3.ProgrammingError: Incorrect number of bindings supplied fixed by changing characterID to a tuple (characterID,)
+		character = db.execute(
+		'SELECT * FROM character WHERE character_id =?',(characterID,) 
+		).fetchone()
+	return render_template('character/character/view.html', character=character)
+
 
 @bp.route('/activities', methods=['GET'])
 def select_activities():
-    return render_template('character/activity_selection/activity_selection.html')
+	return render_template('character/activity_selection/activity_selection.html')

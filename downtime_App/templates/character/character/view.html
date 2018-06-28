@@ -5,10 +5,17 @@
 {% endblock %}
 
 {% block content %}
-<h2>;;Character Name: Downtime Unset</h2>
-<p>Character Description</p>
-<p>;;str:10 dex:14 con:13 int:12 wis:11 cha:11</p>
-<h2>Character Activities</h2>
+<div>
+	<h1>{{ character['character_name'] }}</h1>
+	<p>{{ character['character_description'] }}</p>
+	<p>{{ character['character_str'] }}</p>
+	<p>{{ character['character_dex'] }}</p>
+	<p>{{ character['character_con'] }}</p>
+	<p>{{ character['character_int'] }}</p>
+	<p>{{ character['character_wis'] }}</p>
+	<p>{{ character['character_cha'] }}</p>
+</div>
+
 <a href="{{ url_for('character.index') }}">Back</a>
 <hr>
 <hr>
