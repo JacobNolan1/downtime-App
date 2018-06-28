@@ -5,11 +5,13 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from downtime_App.auth import login_required
 from downtime_App.db import get_db
 
 bp = Blueprint('character', __name__, url_prefix='/character')
 
 @bp.route('/', methods=('GET', 'POST'))
+@login_required
 def index():
 
 	db = get_db()
@@ -52,15 +54,18 @@ def index():
 		return render_template('character/character/index.html')
 
 @bp.route('/new', methods=['GET'])
+@login_required
 def new():
 	return render_template('character/character/new.html')
 
 @bp.route('/update', methods=['GET'])
+@login_required
 def update():
 	return render_template('character/character/update.html')
 
 
 @bp.route('/view/<characterID>', methods=['GET'])
+@login_required
 def view(characterID):
 	db = get_db()
 	if request.method == 'GET':
@@ -72,5 +77,6 @@ def view(characterID):
 
 
 @bp.route('/activities', methods=['GET'])
+@login_required
 def select_activities():
 	return render_template('character/activity_selection/activity_selection.html')
