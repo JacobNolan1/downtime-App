@@ -34,11 +34,11 @@ def index():
 		charWis = request.form.get('char_wis')
 		charCha = request.form.get('char_cha')
 		
+		userID = session.get('user_id')
+
 		if postAction == "new":
 			if postAction != "" and characterName != "" and characterDescription != "" and charStr != "" and \
 				charDex != "" and charCon != "" and charInt != "" and charWis != "" and charCha != "":
-				print("test")
-				userID=""
 				avaliableDowntime = 0
 				usedDowntime = 0
 				db.execute('INSERT INTO character (user_id, character_name, character_description, character_str, \
@@ -68,13 +68,19 @@ def update():
 @login_required
 def view(characterID):
 	db = get_db()
-	if request.method == 'GET':
-		#sqlite3.ProgrammingError: Incorrect number of bindings supplied fixed by changing characterID to a tuple (characterID,)
-		character = db.execute(
-		'SELECT * FROM character WHERE character_id =?',(characterID,) 
-		).fetchone()
-	return render_template('character/character/view.html', character=character)
-
+	userID = session.get('user_id')
+	
+	#sqlite3.ProgrammingError: Incorrect number of bindings supplied fixed by changing characterID to a tuple (characterID,)
+	character = db.execute(
+	'SELECT * FROM character WHERE character_id =?',(characterID,) 
+	).fetchone()
+	if(userID == character['user_id']):
+		return render_template('character/character/view.html', character=character)
+	else:
+		#make this call 404 abort
+		error = "You are not authorised to access this character"
+		flash(error)
+		return redirect(url_for('character.index'))	
 
 @bp.route('/activities', methods=['GET'])
 @login_required

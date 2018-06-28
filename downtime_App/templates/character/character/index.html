@@ -14,17 +14,19 @@
 <a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
 
 	{% for character in characters %}
-		<div>
-			<a href="{{ url_for('character.view', characterID = character['character_id']) }}">	
-		    	<h1>{{ character['character_name'] }}</h1>
-		    	<p>{{ character['character_description'][:100] }}</p>
-		    	<p>{{ character['character_str'] }}</p>
-		    	<p>{{ character['character_dex'] }}</p>
-		    	<p>{{ character['character_con'] }}</p>
-		    	<p>{{ character['character_int'] }}</p>
-		    	<p>{{ character['character_wis'] }}</p>
-		    	<p>{{ character['character_cha'] }}</p>
-		    </a>
-		</div>
+		{% if session['id'] == character['user_id'] %}
+			<div>
+				<a href="{{ url_for('character.view', characterID = character['character_id']) }}">	
+			    	<h1>{{ character['character_name'] }}</h1>
+			    	<p>{{ character['character_description'][:100] }}</p>
+			    	<p>{{ character['character_str'] }}</p>
+			    	<p>{{ character['character_dex'] }}</p>
+			    	<p>{{ character['character_con'] }}</p>
+			    	<p>{{ character['character_int'] }}</p>
+			    	<p>{{ character['character_wis'] }}</p>
+			    	<p>{{ character['character_cha'] }}</p>
+			    </a>
+			</div>
+		{% endif %}
 	{% endfor %}
 {% endblock %}
