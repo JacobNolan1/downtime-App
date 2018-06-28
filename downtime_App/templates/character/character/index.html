@@ -7,14 +7,11 @@
 {% block content %}
 <a href="{{ url_for('character.new') }}">New Character</a>
 <hr>
-<h2>;;Character Name: Downtime Unset</h2>
-<p>Character Description</p>
-<p>;;str:10 dex:14 con:13 int:12 wis:11 cha:11</p>
 <a href="{{ url_for('character.update') }}">Edit Character</a>
 <a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
 
 	{% for character in characters %}
-		{% if session['id'] == character['user_id'] %}
+		{% if session['user_id'] == character['user_id'] %}
 			<div>
 				<a href="{{ url_for('character.view', characterID = character['character_id']) }}">	
 			    	<h1>{{ character['character_name'] }}</h1>

@@ -51,7 +51,11 @@ def index():
 				error = "Not all feilds were entered correctly"
 				flash(error)
 				return redirect(url_for('character.new'))
-		return render_template('character/character/index.html')
+				
+		characters = db.execute(
+		'SELECT * FROM character'
+		).fetchall()
+		return render_template('character/character/index.html', characters=characters)
 
 @bp.route('/new', methods=['GET'])
 @login_required
