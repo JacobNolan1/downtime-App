@@ -1,32 +1,35 @@
 <!doctype html>
 <html>
-<head>
-<title>{% block title %}{% endblock %} - Dungeons and Dragons</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-<nav>
-  <h1>Dungeons and Dragons</h1>
-  <ul>
-    {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span></li>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-      <li><a href="{{ url_for('character.index') }}">Characters</a></li>
-      <li><a href="{{ url_for('campaign.index') }}">Campaigns</a></li>
-    {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-    {% endif %}
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
-</body>
+	<head>
+		<title>{% block title %}{% endblock %} - Dungeons and Dragons</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<header>
+			<nav>
+				  <ul id="nav">
+				  	<li><p>Dungeons and Dragons</p></li>
+						<li><a href="#">Home</a></li>
+						<li><a href="{{ url_for('character.index') }}">Character</a></li>
+						<li><a href="{{ url_for('campaign.index') }}">Campaigns</a></li>
+						{% if g.user %}
+							<li class="navbar_auth"><p>Welcome {{ g.user['username'] }}</p></li>
+							<li class="navbar_auth"><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+						{% else %}
+							<li class="navbar_auth"><a href="{{ url_for('auth.register') }}">Register</a></li>
+							<li class="navbar_auth"><a href="{{ url_for('auth.login') }}">Log In</a></li>
+						{% endif %}
+					</ul>
+			</nav>
+		</header>
+		<section class="content">
+			<header>
+				{% block header %}{% endblock %}
+			</header>
+			{% for message in get_flashed_messages() %}
+				<div class="flash">{{ message }}</div>
+			{% endfor %}
+			{% block content %}{% endblock %}
+		</section>
+	</body>
 </html>

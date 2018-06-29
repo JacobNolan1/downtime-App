@@ -1,0 +1,55 @@
+html, 
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+    background-color: rgb(185,190,193);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#nav {
+    width: 100%;
+    float: left;
+    margin: 0 0 3em 0;
+    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    list-style: none;
+    background: linear-gradient(to bottom right, #32405f 0%, #1c2337 100%);
+    border-bottom: 5px solid rgb(24,31,46); 
+    border-top: 1px solid #ccc; 
+    font-size: 20px;
+    }
+
+#nav li a {
+    float: left;
+    vertical-align: middle;
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(138,162,179);
+    text-decoration: underline;
+    }
+#nav li a:hover {
+    color: rgb(96,115,136);}
+
+#nav p {
+    float: left;
+    vertical-align: middle;
+    display: block;
+    padding: 8px 15px;
+    padding-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(138,162,179);
+    margin: 0px;
+    text-decoration: underline;
+    }
+
+.navbar_auth {
+    float: right;
+    padding-top: 8px;
+    font-size: 15px;
+}
