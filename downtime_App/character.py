@@ -23,7 +23,6 @@ def index():
 		return render_template('character/character/index.html', characters=characters)
 
 	if request.method == 'POST':
-		postAction = request.form.get('post_action')
 		characterID = request.form.get('character_ID')
 		characterName = request.form.get('character_name')
 		characterDescription = request.form.get('character_description')
@@ -36,21 +35,21 @@ def index():
 		
 		userID = session.get('user_id')
 
-		if postAction == "new":
-			if postAction != "" and characterName != "" and characterDescription != "" and charStr != "" and \
-				charDex != "" and charCon != "" and charInt != "" and charWis != "" and charCha != "":
-				avaliableDowntime = 0
-				usedDowntime = 0
-				db.execute('INSERT INTO character (user_id, character_name, character_description, character_str, \
-					character_dex, character_con, character_int, character_wis, character_cha, \
-					avaliable_downtime, used_downtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' \
-					,(userID, characterName, characterDescription, charStr, charDex, charCon, \
-					charInt, charWis, charCha, avaliableDowntime, usedDowntime))
-				db.commit()
-			else:
-				error = "Not all feilds were entered correctly"
-				flash(error)
-				return redirect(url_for('character.new'))
+		
+		if characterName != "" and characterDescription != "" and charStr != "" and \
+			charDex != "" and charCon != "" and charInt != "" and charWis != "" and charCha != "":
+			avaliableDowntime = 0
+			usedDowntime = 0
+			db.execute('INSERT INTO character (user_id, character_name, character_description, character_str, \
+				character_dex, character_con, character_int, character_wis, character_cha, \
+				avaliable_downtime, used_downtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' \
+				,(userID, characterName, characterDescription, charStr, charDex, charCon, \
+				charInt, charWis, charCha, avaliableDowntime, usedDowntime))
+			db.commit()
+		else:
+			error = "Not all feilds were entered correctly"
+			flash(error)
+			return redirect(url_for('character.new'))
 
 		characters = db.execute(
 		'SELECT * FROM character'
@@ -62,10 +61,38 @@ def index():
 def new():
 	return render_template('character/character/new.html')
 
-@bp.route('/update', methods=['GET'])
+@bp.route('/update/<characterID>', methods=('GET','POST'))
 @login_required
-def update():
-	return render_template('character/character/update.html')
+def update(characterID):
+	db = get_db()
+	userID = session.get('user_id')
+	#sqlite3.ProgrammingError: Incorrect number of bindings supplied fixed by changing characterID to a tuple (characterID,)
+	character = db.execute(
+	'SELECT * FROM character WHERE character_id =?',(characterID,) 
+	).fetchone()
+	if(userID == character['user_id']):
+		if request.method == 'GET':
+			return render_template('character/character/update.html', character=character)
+		if request.method == 'POST':
+			characterID = request.form.get('character_ID')
+			characterName = request.form.get('character_name')
+			characterDescription = request.form.get('character_description')
+			charStr = request.form.get('char_str')
+			charDex = request.form.get('char_dex')
+			charCon = request.form.get('char_con')
+			charInt = request.form.get('char_int')
+			charWis = request.form.get('char_wis')
+			charCha = request.form.get('char_cha')
+			db.execute('UPDATE character SET character_name=?, character_description=?, \
+				character_str=?, character_dex=?, character_con=?, character_int=?, \
+				character_wis=?, character_cha=? WHERE character_id=?',(characterName, characterDescription, charStr, charDex, charCon, charInt, charWis, charCha, characterID))
+			db.commit()
+			return redirect(url_for('character.index'))
+	else:
+		#make this call 404 abort
+		error = "You are not authorised to access this character"
+		flash(error)
+		return redirect(url_for('character.index'))	
 
 
 @bp.route('/view/<characterID>', methods=('GET','POST'))
@@ -83,8 +110,11 @@ def view(characterID):
 		if request.method == 'GET':
 			return render_template('character/character/view.html', character=character)
 		if request.method == 'POST':
-			db.execute('DELETE FROM character WHERE character_id=?',(characterID,))
-			db.commit()
+			if "Update" in request.form:
+				return redirect(url_for('character.update', characterID = characterID))	
+			elif "Delete" in request.form:
+				db.execute('DELETE FROM character WHERE character_id=?',(characterID,))
+				db.commit()
 			return redirect(url_for('character.index'))	
 	else:
 		#make this call 404 abort

@@ -18,7 +18,8 @@
 
 	<a href="{{ url_for('character.index') }}">Back</a>
 	<form action="{{ url_for('character.view', characterID = character['character_id']) }}" method="post">
-		<input type="submit" value="Delete">
+		<input type="submit" value="Update" name="Update">
+		<input type="submit" value="Delete" name="Delete">
 	</form>
 	<hr>
 	<hr>

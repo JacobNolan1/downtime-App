@@ -7,7 +7,6 @@
 {% block content %}
 <a href="{{ url_for('character.new') }}">New Character</a>
 <hr>
-<a href="{{ url_for('character.update') }}">Edit Character</a>
 <a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
 
 	{% for character in characters %}

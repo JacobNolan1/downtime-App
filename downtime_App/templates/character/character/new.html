@@ -6,14 +6,13 @@
 
 {% block content %}
 	<form action="{{ url_for('character.index') }}" method="post">
-		<input type="hidden" name="post_action" value="new">
 		<input type="hidden" name="character_ID" value="">
 		
 		<label for="character_name">Character Name</label>
 		<input type="text" name="character_name">
 		
 		<label for="character_description">Character Description</label>
-		<input type="text" name="character_description">
+		<textarea rows="4" cols="50" name="character_description"></textarea>
 		<hr>
 		<label for="char_str">Character Strength</label>
 		<input type="text" name="char_str">
