@@ -11,7 +11,7 @@ body {
 #nav {
     width: 100%;
     float: left;
-    margin: 0 0 3em 0;
+    margin: 0 0 1em 0;
     padding: 0;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -52,4 +52,9 @@ body {
     float: right;
     padding-top: 8px;
     font-size: 15px;
+}
+
+.main_content {
+    margin:0px;
+    margin-left: 20px;
 }

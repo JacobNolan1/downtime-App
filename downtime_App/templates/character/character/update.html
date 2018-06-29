@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Edit Character (Charactername){% endblock %}</h1>
-{% endblock %}
+{% block title %}Edit Character (Charactername){% endblock %}
 
 {% block content %}
 	<a href="{{ url_for('character.index') }}">Back</a>

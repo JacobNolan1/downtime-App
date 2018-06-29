@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}New Character (Charactername){% endblock %}</h1>
-{% endblock %}
+{% block title %}New Character (Charactername){% endblock %}
 
 {% block content %}
 	<form action="{{ url_for('character.index') }}" method="post">

@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Select Character{% endblock %}</h1>
-{% endblock %}
+{% block title %} Select Character {% endblock %}
 
 {% block content %}
-<a href="{{ url_for('character.new') }}">New Character</a>
+	<div class="main_content">
+		<h1>Characters</h1>
+		<a href="{{ url_for('character.new') }}">New Character</a>
 <hr>
 <a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
-
 	{% for character in characters %}
 		{% if session['user_id'] == character['user_id'] %}
 			<div>
@@ -25,4 +24,5 @@
 			</div>
 		{% endif %}
 	{% endfor %}
+	</div>
 {% endblock %}
