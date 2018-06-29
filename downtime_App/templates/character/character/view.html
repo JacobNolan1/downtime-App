@@ -17,6 +17,11 @@
 	</div>
 
 	<a href="{{ url_for('character.index') }}">Back</a>
+	<form action="{{ url_for('character.view', characterID = character['character_id']) }}" method="post">
+		<input type="submit" value="Delete">
+	</form>
 	<hr>
 	<hr>
 {% endblock %}
+
+

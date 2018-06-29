@@ -51,7 +51,7 @@ def index():
 				error = "Not all feilds were entered correctly"
 				flash(error)
 				return redirect(url_for('character.new'))
-				
+
 		characters = db.execute(
 		'SELECT * FROM character'
 		).fetchall()
@@ -68,7 +68,7 @@ def update():
 	return render_template('character/character/update.html')
 
 
-@bp.route('/view/<characterID>', methods=['GET'])
+@bp.route('/view/<characterID>', methods=('GET','POST'))
 @login_required
 def view(characterID):
 	db = get_db()
@@ -78,14 +78,20 @@ def view(characterID):
 	character = db.execute(
 	'SELECT * FROM character WHERE character_id =?',(characterID,) 
 	).fetchone()
+
 	if(userID == character['user_id']):
-		return render_template('character/character/view.html', character=character)
+		if request.method == 'GET':
+			return render_template('character/character/view.html', character=character)
+		if request.method == 'POST':
+			db.execute('DELETE FROM character WHERE character_id=?',(characterID,))
+			db.commit()
+			return redirect(url_for('character.index'))	
 	else:
 		#make this call 404 abort
 		error = "You are not authorised to access this character"
 		flash(error)
 		return redirect(url_for('character.index'))	
-
+	
 @bp.route('/activities', methods=['GET'])
 @login_required
 def select_activities():
