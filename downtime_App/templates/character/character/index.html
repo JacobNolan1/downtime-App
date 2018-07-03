@@ -6,7 +6,7 @@
 	<div class="main_content">
 		<h1>Characters</h1>
 		<a href="{{ url_for('character.new') }}">New Character</a>
-<hr>
+		<hr>
 <a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
 	{% for character in characters %}
 		{% if session['user_id'] == character['user_id'] %}
