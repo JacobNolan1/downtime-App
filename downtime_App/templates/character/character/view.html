@@ -46,6 +46,7 @@
 		</div>
 	</div>
 	<a href="{{ url_for('character.index') }}">Back</a>
+	<a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
 	<a href="#>View Campaign</a>
 	<form action="{{ url_for('character.view', characterID = character['character_id']) }}" method="post">
 		<input type="submit" value="Update" name="Update">

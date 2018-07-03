@@ -3,26 +3,44 @@
 {% block title %} Select Character {% endblock %}
 
 {% block content %}
-	<div class="main_content">
-		<h1>Characters</h1>
-		<a href="{{ url_for('character.new') }}">New Character</a>
-		<hr>
-<a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
-	{% for character in characters %}
-		{% if session['user_id'] == character['user_id'] %}
-			<div>
-				<a href="{{ url_for('character.view', characterID = character['character_id']) }}">	
-			    	<h1>{{ character['character_name'] }}</h1>
-			    	<p>{{ character['character_description'][:100] }}</p>
-			    	<p>{{ character['character_str'] }}</p>
-			    	<p>{{ character['character_dex'] }}</p>
-			    	<p>{{ character['character_con'] }}</p>
-			    	<p>{{ character['character_int'] }}</p>
-			    	<p>{{ character['character_wis'] }}</p>
-			    	<p>{{ character['character_cha'] }}</p>
-			    </a>
-			</div>
-		{% endif %}
-	{% endfor %}
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h1>Characters</h1>
+			<a class="btn btn-primary pull-right" href="{{ url_for('character.new') }}">New Character</a>
+			<table class="table table-striped .table-hover">
+				<thead>
+					<tr class="table-row" data-href="http://tutorialsplane.com">
+		    			<th>Character Name</th>
+		   				 <th>Character Description</th>
+		   				 <th>Strength</th>
+		   				 <th>Dexterity</th>
+		   				 <th>Constitution</th>
+		   				 <th>Intelligence</th>
+		   				 <th>Wisdom</th>
+		   				 <th>Charisma</th>
+		  			</tr>
+	  			</thead>
+	  			<tbody>
+	  				{% for character in characters %}
+						{% if session['user_id'] == character['user_id'] %}
+						<div>
+								<tr class="clickable-row" data-href="{{ url_for('character.view', characterID = character['character_id']) }}">
+								    <td>{{ character['character_name'] }}</td>
+								    <td>{{ character['character_description'] }}</td>
+								    <td>{{ character['character_str'] }}</td>
+								    <td>{{ character['character_dex'] }}</td>
+								    <td>{{ character['character_con'] }}</td>
+								    <td>{{ character['character_int'] }}</td>
+								    <td>{{ character['character_wis'] }}</td>
+								    <td>{{ character['character_cha'] }}</td>
+							  	</tr>
+						</div>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
+</div>
 {% endblock %}
