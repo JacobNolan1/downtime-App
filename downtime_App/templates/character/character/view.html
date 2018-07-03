@@ -1,28 +1,57 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}View Character (Charactername){% endblock %}</h1>
-{% endblock %}
+{% block title %}View Character (Charactername){% endblock %}
 
 {% block content %}
-	<div>
-		<h1>{{ character['character_name'] }}</h1>
-		<p>{{ character['character_description'] }}</p>
-		<p>{{ character['character_str'] }}</p>
-		<p>{{ character['character_dex'] }}</p>
-		<p>{{ character['character_con'] }}</p>
-		<p>{{ character['character_int'] }}</p>
-		<p>{{ character['character_wis'] }}</p>
-		<p>{{ character['character_cha'] }}</p>
-	</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<table class="table">
+				<thead>
+					<tr>
+		    			<th>Character Name</th>
+		   				 <th>Character Description</th>
+		   				 <th>Strength</th>
+		   				 <th>Dexterity</th>
+		   				 <th>Constitution</th>
+		   				 <th>Intelligence</th>
+		   				 <th>Wisdom</th>
+		   				 <th>Charisma</th>
+		  			</tr>
+	  			</thead>
+	  			<tbody>
+				  	<tr>
+					    <td>{{ character['character_name'] }}</td>
+					    <td>{{ character['character_description'] }}</td>
+					    <td>{{ character['character_str'] }}</td>
+					    <td>{{ character['character_dex'] }}</td>
+					    <td>{{ character['character_con'] }}</td>
+					    <td>{{ character['character_int'] }}</td>
+					    <td>{{ character['character_wis'] }}</td>
+					    <td>{{ character['character_cha'] }}</td>
+				  </tr>
+				</tbody>
+			</table>
 
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<h1>Current Activities</h1>
+		</div>
+	</div>
+		<div class="row">
+		<div class="col-12">
+			<h1>Ongoing Activities</h1>
+		</div>
+	</div>
 	<a href="{{ url_for('character.index') }}">Back</a>
+	<a href="#>View Campaign</a>
 	<form action="{{ url_for('character.view', characterID = character['character_id']) }}" method="post">
 		<input type="submit" value="Update" name="Update">
 		<input type="submit" value="Delete" name="Delete">
 	</form>
-	<hr>
-	<hr>
+</div>
 {% endblock %}
 
 
