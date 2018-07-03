@@ -13,12 +13,7 @@
 					<tr class="table-row" data-href="http://tutorialsplane.com">
 		    			<th>Character Name</th>
 		   				 <th>Character Description</th>
-		   				 <th>Strength</th>
-		   				 <th>Dexterity</th>
-		   				 <th>Constitution</th>
-		   				 <th>Intelligence</th>
-		   				 <th>Wisdom</th>
-		   				 <th>Charisma</th>
+		   				 <th>Stats</th>
 		  			</tr>
 	  			</thead>
 	  			<tbody>
@@ -28,12 +23,24 @@
 								<tr class="clickable-row" data-href="{{ url_for('character.view', characterID = character['character_id']) }}">
 								    <td>{{ character['character_name'] }}</td>
 								    <td>{{ character['character_description'] }}</td>
-								    <td>{{ character['character_str'] }}</td>
-								    <td>{{ character['character_dex'] }}</td>
-								    <td>{{ character['character_con'] }}</td>
-								    <td>{{ character['character_int'] }}</td>
-								    <td>{{ character['character_wis'] }}</td>
-								    <td>{{ character['character_cha'] }}</td>
+								    <td>
+								    	<table>
+									    	<tbody>
+										    	<tr>
+										    		<td> Str: {{ character['character_str'] }} </td>
+										    		<td> Int: {{ character['character_int'] }} </td>
+										    	</tr>
+										    	<tr>
+										    		<td> Dex: {{ character['character_dex'] }} </td>
+										    		<td> Wis: {{ character['character_wis'] }} </td>
+										    	</tr>
+										    	<tr>
+										    		<td> Con: {{ character['character_con'] }} </td>
+										    		<td> Cha: {{ character['character_cha'] }} </td>
+										    	</tr>				
+									    	</tbody>				    									    	
+								    	</table>
+								    </td>
 							  	</tr>
 						</div>
 						{% endif %}
