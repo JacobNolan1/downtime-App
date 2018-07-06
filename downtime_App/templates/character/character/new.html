@@ -3,36 +3,49 @@
 {% block title %}New Character (Charactername){% endblock %}
 
 {% block content %}
-	<form action="{{ url_for('character.index') }}" method="post">
-		<input type="hidden" name="character_ID" value="">
-		
-		<label for="character_name">Character Name</label>
-		<input type="text" name="character_name">
-		
-		<label for="character_description">Character Description</label>
-		<textarea rows="4" cols="50" name="character_description"></textarea>
-		<hr>
-		<label for="char_str">Character Strength</label>
-		<input type="text" name="char_str">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<form action="{{ url_for('character.index') }}" method="post">
+				<input type="hidden" name="character_ID" value="">
+				
+				<div class="form-group">
+					<label for="character_name">Character Name</label>
+					<input type="text" name="character_name" class="form-control">
+				</div>
 
-		<label for="char_dex">Character Dexterity</label>
-		<input type="text" name="char_dex">
-		
-		<label for="char_con">Character Constituition</label>
-		<input type="text" name="char_con">
+				<div class="form-group">
+					<label for="character_description">Character Description</label>
+					<textarea rows="4" cols="50" name="character_description" class="form-control"></textarea>
+				</div>
 
-		<label for="char_int">Character Intelligence</label>
-		<input type="text" name="char_int">
+				<hr>
+				<div class="form-group">
+					<label for="char_str">Character Strength</label>
+					<input type="text" name="char_str" class="form-control">
 
-		<label for="char_wis">Character Wisdom</label>
-		<input type="text" name="char_wis">
+					<label for="char_dex">Character Dexterity</label>
+					<input type="text" name="char_dex" class="form-control">
+					
+					<label for="char_con">Character Constituition</label>
+					<input type="text" name="char_con" class="form-control">
 
-		<label for="char_cha">Character Charisma</label>
-		<input type="text" name="char_cha">
+					<label for="char_int">Character Intelligence</label>
+					<input type="text" name="char_int" class="form-control">
+
+					<label for="char_wis">Character Wisdom</label>
+					<input type="text" name="char_wis" class="form-control">
+
+					<label for="char_cha">Character Charisma</label>
+					<input type="text" name="char_cha" class="form-control">
+				</div>
 
 
-		<input type="submit" value="Submit">
-		<input type="reset" value="Reset">
-	</form>
-	<a href="{{ url_for('character.index') }}">Back</a>
+				<input type="submit" value="Submit" class="btn btn-primary">
+				<input type="reset" value="Reset" class="btn btn-danger">
+			</form>
+			<a href="{{ url_for('character.index') }}" class="btn btn-primary">Back</a>
+		</div>
+	</div>
+</div>
 {% endblock %}

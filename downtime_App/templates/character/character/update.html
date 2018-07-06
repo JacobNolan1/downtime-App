@@ -3,36 +3,58 @@
 {% block title %}Edit Character (Charactername){% endblock %}
 
 {% block content %}
-	<a href="{{ url_for('character.index') }}">Back</a>
-	<form action="{{ url_for('character.update', characterID = character['character_ID']) }}" method="post">
-		<input type="hidden" name="character_ID" value="{{ character['character_ID'] }}">
-		
-		<label for="character_name">Character Name</label>
-		<input type="text" name="character_name" value="{{ character['character_name'] }}">
-		
-		<label for="character_description">Character Description</label>
-		<textarea rows="4" cols="50" name="character_description">{{ character['character_description'] }}</textarea>
-		<hr>
-		<label for="char_str">Character Strength</label>
-		<input type="text" name="char_str" value="{{ character['character_str'] }}">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<a href="{{ url_for('character.index') }}" class="btn btn-primary">Back</a>
+			<form action="{{ url_for('character.update', characterID = character['character_ID']) }}" method="post">
+				<input type="hidden" name="character_ID" value="{{ character['character_ID'] }}">
+				
+				<div class="form-group">
+					<label for="character_name">Character Name</label>
+					<input type="text" name="character_name" value="{{ character['character_name'] }}" class="form-control">
+				</div>
 
-		<label for="char_dex">Character Dexterity</label>
-		<input type="text" name="char_dex" value="{{ character['character_dex'] }}">
-		
-		<label for="char_con">Character Constituition</label>
-		<input type="text" name="char_con" value="{{ character['character_con'] }}">
+				<div class="form-group">
+					<label for="character_description">Character Description</label>
+					<textarea rows="4" cols="50" name="character_description" class="form-control">{{ character['character_description'] }}</textarea>
+				</div>
 
-		<label for="char_int">Character Intelligence</label>
-		<input type="text" name="char_int" value="{{ character['character_int'] }}">
+				<hr>
+				<div class="form-group">
+					<label for="char_str">Character Strength</label>
+					<input type="text" name="char_str" value="{{ character['character_str'] }}" class="form-control">
+				</div>
 
-		<label for="char_wis">Character Wisdom</label>
-		<input type="text" name="char_wis" value="{{ character['character_wis'] }}">
+				<div class="form-group">
+					<label for="char_dex">Character Dexterity</label>
+					<input type="text" name="char_dex" value="{{ character['character_dex'] }}" class="form-control">
+				</div>
 
-		<label for="char_cha">Character Charisma</label>
-		<input type="text" name="char_cha" value="{{ character['character_cha'] }}">
+				<div class="form-group">		
+					<label for="char_con">Character Constituition</label>
+					<input type="text" name="char_con" value="{{ character['character_con'] }}" class="form-control">
+				</div>
 
-		<input type="submit" value="Submit">
-		<input type="reset" value="Reset">
-	</form>
-	
+				<div class="form-group">
+					<label for="char_int">Character Intelligence</label>
+					<input type="text" name="char_int" value="{{ character['character_int'] }}" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="char_wis">Character Wisdom</label>
+					<input type="text" name="char_wis" value="{{ character['character_wis'] }}" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="char_cha">Character Charisma</label>
+					<input type="text" name="char_cha" value="{{ character['character_cha'] }}" class="form-control">
+				</div>
+
+				<input type="submit" value="Submit" class="btn btn-primary">
+				<input type="reset" value="Reset" class="btn btn-primary">
+			</form>
+		</div>
+	</div>
+</div>
 {% endblock %}
