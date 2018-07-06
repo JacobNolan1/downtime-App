@@ -6,3 +6,9 @@
   cursor: pointer !important;
   background-color: #ccc !important;
 }
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}

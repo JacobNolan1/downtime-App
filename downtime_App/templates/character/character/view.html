@@ -4,61 +4,80 @@
 
 {% block content %}
 <div class="container">
-	<div class="row">
-		<div class="col-12">
+	<div class="row equal">
+		<div class="col-md-12">
 			<table class="table">
 				<thead>
 					<tr>
 		    			<th>Character Name</th>
 		   				 <th>Character Description</th>
 		   				 <th>Stats</th>
+		   				 <th>Additional Bonuses</th>
+		   				 <th></th>
 		  			</tr>
 	  			</thead>
 	  			<tbody>
 				  	<tr>
 					    <td>{{ character['character_name'] }}</td>
-								    <td>{{ character['character_description'] }}</td>
-								    <td>
-								    	<table>
-									    	<tbody>
-										    	<tr>
-										    		<td> Str: {{ character['character_str'] }} </td>
-										    		<td> Int: {{ character['character_int'] }} </td>
-										    	</tr>
-										    	<tr>
-										    		<td> Dex: {{ character['character_dex'] }} </td>
-										    		<td> Wis: {{ character['character_wis'] }} </td>
-										    	</tr>
-										    	<tr>
-										    		<td> Con: {{ character['character_con'] }} </td>
-										    		<td> Cha: {{ character['character_cha'] }} </td>
-										    	</tr>				
-									    	</tbody>				    									    	
-								    	</table>
-								    </td>
+					    <td>{{ character['character_description'] }}</td>
+					    <td>
+					    	<table>
+						    	<tbody>
+							    	<tr>
+							    		<td> Str: {{ character['character_str'] }} </td>
+							    		<td> Int: {{ character['character_int'] }} </td>
+							    	</tr>
+							    	<tr>
+							    		<td> Dex: {{ character['character_dex'] }} </td>
+							    		<td> Wis: {{ character['character_wis'] }} </td>
+							    	</tr>
+							    	<tr>
+							    		<td> Con: {{ character['character_con'] }} </td>
+							    		<td> Cha: {{ character['character_cha'] }} </td>
+							    	</tr>				
+						    	</tbody>				    									    	
+					    	</table>
+					    </td>
+					    <td>None</td>
 				  </tr>
 				</tbody>
 			</table>
-
+			<table class="table">
+				<thead>
+					<tr>
+		    			<th>Current Activities</th>
+		    			<th>
+		    			<div>
+		    				<a class="btn btn-primary pull-right"href="{{ url_for('character.select_activities') }}">Select Activities</a>
+		    				<a class="btn btn-primary pull-right" href="#View Campaign">View Campaign</a>
+		    			</div>
+		    			</th>
+		  			</tr>
+	  			</thead>
+	  			<tbody></tbody>
+	  		</table>
+	  		<table class="table">
+				<thead>
+					<tr>
+		    			<th>Ongoing Activities</th>
+		  			</tr>
+	  			</thead>
+	  			<tbody></tbody>
+	  		</table>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-12">
-			<h1>Current Activities</h1>
+	<div class="row equal">
+		<div class="col-md-1">
+			<a class="btn btn-primary" href="{{ url_for('character.index') }}">Back</a>
+		</div>
+		<div class="col-md-11">
+			
+			<form class="pull-right" action="{{ url_for('character.view', characterID = character['character_id']) }}" method="post">
+				<input class="btn btn-primary" type="submit" value="Update" name="Update">
+				<input class="btn btn-danger" type="submit" value="Delete" name="Delete">
+			</form>
 		</div>
 	</div>
-		<div class="row">
-		<div class="col-12">
-			<h1>Ongoing Activities</h1>
-		</div>
-	</div>
-	<a href="{{ url_for('character.index') }}">Back</a>
-	<a href="{{ url_for('character.select_activities') }}">Select DowntimeActivities</a>
-	<a href="#>View Campaign</a>
-	<form action="{{ url_for('character.view', characterID = character['character_id']) }}" method="post">
-		<input type="submit" value="Update" name="Update">
-		<input type="submit" value="Delete" name="Delete">
-	</form>
 </div>
 {% endblock %}
 
