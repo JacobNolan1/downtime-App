@@ -122,7 +122,25 @@ def view(characterID):
 		flash(error)
 		return redirect(url_for('character.index'))	
 	
-@bp.route('/activities', methods=['GET'])
+@bp.route('/activities/<characterID>', methods=('GET','POST'))
 @login_required
-def select_activities():
-	return render_template('character/activity_selection/activity_selection.html')
+def select_activities(characterID):
+	db = get_db()
+	userID = session.get('user_id')
+	
+	#sqlite3.ProgrammingError: Incorrect number of bindings supplied fixed by changing characterID to a tuple (characterID,)
+	character = db.execute(
+	'SELECT * FROM character WHERE character_id =?',(characterID,) 
+	).fetchone()
+
+	if(userID == character['user_id']):
+		if request.method == 'GET':
+			return render_template('character/activity_selection/activity_selection.html', character=character)
+		if request.method == 'POST':
+			return redirect(url_for('character.index'))	
+	else:
+		#make this call 404 abort
+		error = "You are not authorised to access this character"
+		flash(error)
+		return redirect(url_for('character.index'))	
+

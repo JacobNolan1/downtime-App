@@ -12,6 +12,7 @@
 		    			<th>Character Name</th>
 		   				 <th>Character Description</th>
 		   				 <th>Stats</th>
+		   				 <th>Job</th>
 		   				 <th>Additional Bonuses</th>
 		   				 <th></th>
 		  			</tr>
@@ -39,6 +40,7 @@
 					    	</table>
 					    </td>
 					    <td>None</td>
+					    <td>None</td>
 				  </tr>
 				</tbody>
 			</table>
@@ -48,7 +50,7 @@
 		    			<th>Current Activities</th>
 		    			<th>
 		    			<div>
-		    				<a class="btn btn-primary pull-right"href="{{ url_for('character.select_activities') }}">Select Activities</a>
+		    				<a class="btn btn-primary pull-right" href="{{ url_for('character.select_activities', characterID = character['character_id']) }}">Select Activities</a>
 		    				<a class="btn btn-primary pull-right" href="#View Campaign">View Campaign</a>
 		    			</div>
 		    			</th>
@@ -61,7 +63,7 @@
 					<tr>
 		    			<th>Ongoing Activities</th>
 		  			</tr>
-	  			</thead>
+	  			</thead> 
 	  			<tbody></tbody>
 	  		</table>
 		</div>

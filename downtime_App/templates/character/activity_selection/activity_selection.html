@@ -1,8 +1,69 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Select Activities{% endblock %}</h1>
-{% endblock %}
+{% block title %}Select Activities: {{ character['character_name'] }} {% endblock %}
 
 {% block content %}
+<div class="container">
+	<h3>Activity Selection: {{ character['character_name'] }}</h3>
+	<a href="{{ url_for('character.index') }}" class="btn btn-primary">Back</a>
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table table-striped .table-hover">
+				<thead>
+					<tr class="table-row">
+		    			<th>Current Activities</th>
+		  			</tr>
+	  			</thead>
+	  			<tbody>
+					<tr>
+					    <td></td>
+				  	</tr>						
+				</tbody>
+			</table>		
+		</div>
+		<div class="col-md-6">
+			<table class="table table-striped .table-hover">
+				<thead>
+					<tr class="table-row">
+		    			<th>Ongoing Activities</th>
+		  			</tr>
+	  			</thead>
+	  			<tbody>
+					<tr>
+					    <td></td>
+				  	</tr>						
+				</tbody>
+			</table>		
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<form action="{{ url_for('character.select_activities', characterID = character['character_ID']) }}" method="post">
+				<div class="form-group">
+				    <label for="select_activity_type">Select Activity Category</label>
+				    <select class="form-control" name="select_activity_type">
+				      <option>--Select--</option>
+				      <option>General Activities</option>
+				      <option>Town</option>
+				      <option>City</option>
+				      <option>Wilderness</option>
+				      <option>Dungeon</option>
+				      <option>Other</option>
+				    </select>
+				    <label for="select_activity">Select Activity</label>
+				    <select class="form-control" name="select_activity">
+				      <option>--Select--</option>
+				      <option>Town</option>
+				      <option>City</option>
+				      <option>Wilderness</option>
+				      <option>Dungeon</option>
+				      <option>Other</option>
+				    </select>
+				</div>
+				<input type="submit" value="Submit" class="btn btn-primary">
+				<input type="reset" value="Reset" class="btn btn-danger">
+			</form>
+		</div>
+	</div>
+</div>
 {% endblock %}
