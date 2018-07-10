@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-	<h3>Activity Selection: {{ character['character_name'] }}</h3>
+	<h3>Activity Selection: {{ character['character_name'] }}  8/14hrs selected</h3>
 	<a href="{{ url_for('character.index') }}" class="btn btn-primary">Back</a>
 	<div class="row">
 		<div class="col-md-6">
@@ -41,9 +41,10 @@
 			<form action="{{ url_for('character.select_activities', characterID = character['character_ID']) }}" method="post">
 				<div class="form-group">
 				    <label for="select_activity_type">Select Activity Category</label>
-				    <select class="form-control" name="select_activity_type">
+				    <select class="form-control" name="select_activity_type" id="activities-category">
 				      <option>--Select--</option>
 				      <option>General Activities</option>
+				      <option>Job</option>
 				      <option>Town</option>
 				      <option>City</option>
 				      <option>Wilderness</option>
@@ -51,13 +52,8 @@
 				      <option>Other</option>
 				    </select>
 				    <label for="select_activity">Select Activity</label>
-				    <select class="form-control" name="select_activity">
+				    <select class="form-control" name="select_activity" id="activities-list">
 				      <option>--Select--</option>
-				      <option>Town</option>
-				      <option>City</option>
-				      <option>Wilderness</option>
-				      <option>Dungeon</option>
-				      <option>Other</option>
 				    </select>
 				</div>
 				<input type="submit" value="Submit" class="btn btn-primary">
@@ -66,4 +62,5 @@
 		</div>
 	</div>
 </div>
+
 {% endblock %}
