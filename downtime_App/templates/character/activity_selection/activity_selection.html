@@ -38,7 +38,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<form action="{{ url_for('character.select_activities', characterID = character['character_ID']) }}" method="post">
+			<form action="{{ url_for('character.select_activities', characterID = character['character_ID']) }}" method="post" autocomplete="off">
 				<div class="form-group">
 				    <label for="select_activity_type">Select Activity Category</label>
 				    <select class="form-control" name="select_activity_type" id="activities-category">
