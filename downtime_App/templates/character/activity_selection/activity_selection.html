@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container">
 	<h3>Activity Selection: {{ character['character_name'] }}  8/14hrs selected</h3>
-	<a href="{{ url_for('character.index') }}" class="btn btn-primary">Back</a>
+	<a href="{{ url_for('character.view', characterID = character['character_id']) }}" class="btn btn-primary">Back</a>
 	<div class="row">
 		<div class="col-md-6">
 			<table class="table table-striped .table-hover">
