@@ -36,9 +36,9 @@
 			</table>		
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<form action="{{ url_for('character.select_activities', characterID = character['character_ID']) }}" method="post" autocomplete="off">
+	<form action="{{ url_for('character.select_activities', characterID = character['character_ID']) }}" method="post" autocomplete="off">
+		<div class="row">
+			<div class="col-md-12">
 				<div class="form-group">
 				    <label for="select_activity_type">Select Activity Category</label>
 				    <select class="form-control" name="select_activity_type" id="activities-category">
@@ -56,16 +56,12 @@
 				      <option>--Select--</option>
 				    </select>
 				</div>
-				<input type="submit" value="Submit" class="btn btn-primary">
-				<input type="reset" value="Reset" class="btn btn-danger">
-			</form>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div id="activityDetails"></div>
-		</div>
-	</div>
+		<div id="activityDetails"></div>
+		<input type="submit" value="Submit" class="btn btn-primary">
+		<input type="reset" value="Reset" class="btn btn-danger">
+	</form>
 </div>
 
 {% endblock %}

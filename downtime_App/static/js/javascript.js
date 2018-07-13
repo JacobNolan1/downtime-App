@@ -110,6 +110,7 @@ function setSelectElements(activities) {
 }
 
 function callAjax() {
+	$( "#included-activityDetails" ).remove();
     $.ajax({
         url: 'http://127.0.0.1:5000/character/activities/ajax2',
         data: { 
