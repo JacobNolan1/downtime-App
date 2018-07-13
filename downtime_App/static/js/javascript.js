@@ -4,6 +4,7 @@ $(document).ready(function($) {
     });
 
     $('#activities-category').change(selectActivities);
+    $('#activities-list').change(callAjax);
 });
 
 function selectActivities() {
@@ -107,3 +108,23 @@ function setSelectElements(activities) {
          .text(value));
      });
 }
+
+function callAjax() {
+    $.ajax({
+        url: 'http://127.0.0.1:5000/character/activities/ajax2',
+        data: { 
+        	"selected_category": $('#activities-category').val(),
+        	"selected_activity": $('#activities-list').val() 
+      	},
+        type: 'GET',
+        dataType : "html",
+        success: function(response) {
+            console.log(response);
+            $("#activityDetails").append(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+

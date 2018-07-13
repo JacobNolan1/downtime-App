@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-	Blueprint, flash, g, redirect, render_template, request, session, url_for
+	Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -144,3 +144,13 @@ def select_activities(characterID):
 		flash(error)
 		return redirect(url_for('character.index'))	
 
+@bp.route('/activities/ajax', methods=('GET', 'POST'))
+def ajax_select_activities():
+	print("True")
+	return jsonify("hello")
+
+@bp.route('/activities/ajax2', methods=('GET', 'POST'))
+def ajax_select_activities2():
+	selectedCategory = request.args.get("selected_category")
+	selectedActivity = request.args.get("selected_activity")
+	return render_template('character/activity_selection/activities/general/training.html')
