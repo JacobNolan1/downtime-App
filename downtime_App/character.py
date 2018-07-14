@@ -153,7 +153,11 @@ def ajax_select_activities2():
 
 def loadActivityTemplate(selectedCategory, selectedActivity):
 	if selectedCategory == "General":
-		generalActivities = {'BuyMagic': 'general/buymagic.html','SellMagic': 'general/sellmagic.html','BuyNonMagic': 'general/buynonmagic.html','SellNonMagic': 'general/sellnonmagic.html', 'Relax': 'general/relax.html', 'Research': 'general/research.html', 'Training': 'general/training.html'}
+		generalActivities = {'BuyMagic': 'general/buymagic.html','SellMagic': 'general/sellmagic.html',
+			'BuyNonMagic': 'general/buynonmagic.html','SellNonMagic': 'general/sellnonmagic.html', 
+			'CraftItem': 'general/craftitem.html', 'Carouse': 'general/carouse.html', 
+			'Relax': 'general/relax.html', 'Research': 'general/research.html', 
+			'Training': 'general/training.html'}
 		return findActivityTemplate(selectedActivity, generalActivities)
 	elif selectedCategory == "Job":
 		jobActivities = {'Guard': 'job/guard.html'}

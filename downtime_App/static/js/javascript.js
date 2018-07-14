@@ -33,11 +33,15 @@ function selectActivities() {
 function selectGeneral() {
 	var activities = {
     val1 : '--Select--',
-    Training: 'Training',
-    Research: 'Research',
-    val2 : 'Craft an Item',
-    val3 : 'Buy an Item',
-    val4 : 'Sell an Item'
+    BuyMagic : 'Buy Magical Item',
+    SellMagic : 'Sell Magical Item',
+    BuyNonMagic : 'Buy Non-Magical Item',
+    SellNonMagic : 'Sell Non-Magical Item',
+    CraftItem : 'Craft Item',
+    Carouse : 'Carouse',
+    Training : 'Training',
+    Relax : 'Relaxation',
+    Research : 'Research',
 	};
 	setSelectElements(activities);
 }
