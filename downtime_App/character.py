@@ -145,12 +145,38 @@ def select_activities(characterID):
 		return redirect(url_for('character.index'))	
 
 @bp.route('/activities/ajax', methods=('GET', 'POST'))
-def ajax_select_activities():
-	print("True")
-	return jsonify("hello")
-
-@bp.route('/activities/ajax2', methods=('GET', 'POST'))
 def ajax_select_activities2():
 	selectedCategory = request.args.get("selected_category")
 	selectedActivity = request.args.get("selected_activity")
+	return loadActivityTemplate(selectedCategory, selectedActivity)
 	return render_template('character/activity_selection/activities/general/training.html')
+
+def loadActivityTemplate(selectedCategory, selectedActivity):
+	if selectedCategory == "General":
+		generalActivities = {'BuyMagic': 'general/buymagic.html','SellMagic': 'general/sellmagic.html','BuyNonMagic': 'general/buynonmagic.html','SellNonMagic': 'general/sellnonmagic.html', 'Relax': 'general/relax.html', 'Research': 'general/research.html', 'Training': 'general/training.html'}
+		return findActivityTemplate(selectedActivity, generalActivities)
+	elif selectedCategory == "Job":
+		jobActivities = {'Guard': 'job/guard.html'}
+		return findActivityTemplate(selectedActivity, jobActivities)
+	elif selectedCategory == "Town":
+		townActivities = {'Gamble': 'town/gamble.html'}
+		return findActivityTemplate(selectedActivity, townActivities)
+	elif selectedCategory == "City":
+		cityActivities = {'Gamble': 'city/gamble.html'}
+		return findActivityTemplate(selectedActivity, cityActivities)
+	elif selectedCategory == "Wilderness":
+		wildernessActivities = {'Hunt': 'wilderness/hunt.html'}
+		return findActivityTemplate(selectedActivity, wildernessActivities)
+	elif selectedCategory == "Dungeon":
+		dungeonActivities = {'Explore': 'dungeon/explore.html'}
+		return findActivityTemplate(selectedActivity, generalActivities)
+	else:
+		return None
+
+def findActivityTemplate(selectedActivity, activityList):
+	for activity in activityList:
+		if selectedActivity == activity:
+			linkToTemplate = 'character/activity_selection/activities/'+ activityList[activity]
+			return render_template(linkToTemplate)
+	return None
+

@@ -11,7 +11,7 @@ function selectActivities() {
 
 	var category = ($('#activities-category').val());
 	$('#activities-list').children().remove();
-	if(category === "General Activities") {
+	if(category === "General") {
 		selectGeneral();
 	} else if(category === "Job") {
 		selectJob();
@@ -33,6 +33,8 @@ function selectActivities() {
 function selectGeneral() {
 	var activities = {
     val1 : '--Select--',
+    Training: 'Training',
+    Research: 'Research',
     val2 : 'Craft an Item',
     val3 : 'Buy an Item',
     val4 : 'Sell an Item'
@@ -112,7 +114,7 @@ function setSelectElements(activities) {
 function callAjax() {
 	$( "#included-activityDetails" ).remove();
     $.ajax({
-        url: 'http://127.0.0.1:5000/character/activities/ajax2',
+        url: 'http://127.0.0.1:5000/character/activities/ajax',
         data: { 
         	"selected_category": $('#activities-category').val(),
         	"selected_activity": $('#activities-list').val() 
